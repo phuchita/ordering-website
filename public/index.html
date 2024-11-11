@@ -1,0 +1,539 @@
+<!-- ! HTML -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fried Club</title>
+    <link rel="icon" href="images/logo-small.png" type="image/icon type">
+    
+</head>
+<body>
+    <div class="navbar">
+        <div class="logo">
+            <a href="index.html">
+            <img src="images/logo.png" width="200px">
+            </a>
+        </div>
+        <ul class="nav-links">
+            <li><a href="menu.html">รายการอาหาร</a></li>
+            <li><a href="coupon.html">คูปองส่วนลด</a></li>
+            <li><a href="ordered.html">รายการย้อนหลัง</a></li>
+        </ul>
+        <div class="icons">
+            <div class="cart">
+                <a href="checkout.html">
+                <img src="images/cart-icon.png" width="200px"></a><p id="count">0</p>
+            </div>
+            <!-- ปุ่ม Login และ Logout -->
+        <a href="login.html" id="loginButton" class="login-button">เข้าสู่ระบบ</a>
+        
+
+        </div>
+    </div>
+
+    <!-- banner -->
+
+    <div class="banner">
+        <div class="banner-content">
+            <img src="images/cover.jpg">
+            <button class="coupon-button" onclick="window.location.href='coupon.html'">เก็บส่วนลดได้เลย!</button>
+        </div>
+    </div>
+
+    <!-- service -->
+
+    <div class="service">
+        <h3>บริการพิเศษจากเรา</h3>
+        <p>เพื่อประสบการณ์ที่ดีที่สุดของคุณ</p>
+        <div class="flexbox">
+            <div class="flexbox-1">
+                <img src="images/order-completed-icon.png">
+                <h4>สั่งซื้อสะดวกเพียงปลายนิ้ว</h4>
+                <p1>ด้วยเว็บไซต์ที่เราพัฒนาขึ้น</p1>
+                <p2>ให้ผู้ใช้สามารถใช้งานได้อย่างง่ายดาย</p2>
+            </div>
+            <div class="flexbox-2">
+                <img src="images/chicken-box-icon.png">
+                <h4>ใส่ใจทุกขั้นตอนการทำ</h4>
+                <p1>เราพิถีพิถันในการคัดสรรวัตถุดิบที่ดี</p1>
+                <p2>เพื่อให้คุณได้ลิ้มรสชาติที่เราตั้งใจทำ</p2>
+            </div>
+            <div class="flexbox-3">
+                <img src="images/delivery-icon.png">
+                <h4>ถึงมือคุณอย่างรวดเร็ว</h4>
+                <p1>บริการการส่งที่มีคุณภาพ เพื่อให้อาหาร</p1>
+                <p2>ถึงมือคุณเหมือนเพิ่งออกมาจากเตา</p2>
+            </div>
+        </div>
+    </div>
+
+    <div class="head">
+        <h1>รายการอาหารและเครื่องดื่ม</h1>
+    </div>
+    <div class="container">
+        <div id="root"></div>
+        </div>
+    </div>
+
+
+
+<!-- ! CSS -->
+
+<style>
+@font-face {
+    font-family: "IBM Plex Sans Thai Looped", sans-serif;
+    src: url("fonts/IBMPlexSansThaiLooped-Light.ttf");
+    font-weight: 300;
+    font-style: normal;
+    unicode-range: U+0E00-U+0E7F; /* ช่วงตัวอักษรภาษาไทย */
+  }
+@font-face {
+    font-family: "IBM Plex Sans Thai Looped", sans-serif;
+    src: url("fonts/IBMPlexSansThaiLooped-Medium.ttf");
+    font-weight: 500;
+    font-style: normal;
+    unicode-range: U+0E00-U+0E7F; /* ช่วงตัวอักษรภาษาไทย */
+  }
+@font-face {
+    font-family: "IBM Plex Sans Thai Looped", sans-serif;
+    src: url("fonts/IBMPlexSansThaiLooped-SemiBold.ttf");
+    font-weight: 600;
+    font-style: normal;
+    unicode-range: U+0E00-U+0E7F; /* ช่วงตัวอักษรภาษาไทย */
+  }
+* {
+    font-family: "IBM Plex Sans Thai Looped", sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+    background-color: #E83D46;
+}
+.navbar {
+    margin-top: 30px;
+    margin-left: 50px;
+    margin-right: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #E83D46;
+    padding: 15px 30px;
+}
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 40px;
+}
+.nav-links li a {
+    color: white;
+    font-size: 20px;
+    text-decoration: none;
+}
+.icons {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+.icons img {
+    width: 40px;
+    height: 40px;
+}
+.cart{
+    width: 70px;
+    height: 40px;
+    font-size: 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 3px;
+}
+.cart p{
+    padding: 0px 7px;
+    font-size: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 22px;
+    background-color: rgb(255, 255, 255);
+    color: rgb(0, 0, 0);
+}
+.login-button {
+    color: white;
+    background-color: black;
+    padding: 10px 20px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-size: 20px;
+}
+.logout-button {
+    color: white;
+    background-color: black;
+    width: auto;
+    border-radius: 30px;
+    text-decoration: none;
+    font-size: 20px;
+}
+
+/*banner*/
+
+.banner {
+    margin-top: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-bottom: 20px;
+}
+.banner-content {
+    border-radius: 40px;
+    margin-top: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+.banner-content img {
+    border-radius: 31px;
+}
+.coupon-button {
+    background-color: #E83D46;
+    color: rgb(255, 255, 255);
+    width: 17%;
+    padding: 10px 20px;
+    border: none;
+    border: solid 2px black;
+    border-radius: 30px;
+    font-size: 20px;
+    cursor: pointer;
+    text-align: center;
+    position: absolute;
+    bottom: 50px;
+    font-weight: 300;
+}
+/*บริการจากเรา*/
+
+.service {
+    margin-top: 70px;
+    width: 100%;
+    height: 600px;
+    background-color: white;
+}
+.service h3 {
+    padding-top: 60px;
+    margin-bottom: 5px;
+    font-size: 28px;
+    font-weight: 600;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.service p {
+    font-size: 20px;
+    font-weight: 300;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 50px;
+}
+.flexbox {
+    margin-top: 10px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+.flexbox-1 {
+    border-radius: 10px;
+    cursor: pointer;
+    width: auto;
+    padding: 50px;
+    margin: 10px;
+    transition: 0.5s;
+}
+.flexbox-1:hover {
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    transform: scale(1.05);
+}
+.flexbox-1 img {
+    margin-left: 90px;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.flexbox-1 h4 {
+    margin-bottom: 10px;
+    font-weight: 500;
+    font-size: 24px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.flexbox-1 p1 {
+    display: flex;
+    justify-content: center;
+    font-weight: 500;
+}
+.flexbox-1 p2 {
+    display: flex;
+    justify-content: center;
+    font-weight: 500;
+}
+.flexbox-2 {
+    border-radius: 10px;
+    cursor: pointer;
+    padding: 50px;
+    margin: 10px;
+    transition: 0.5s;
+}
+.flexbox-2:hover {
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    transform: scale(1.05);
+}
+.flexbox-2 img {
+    margin-left: 80px;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.flexbox-2 h4 {
+    margin-bottom: 10px;
+    font-weight: 500;
+    font-size: 24px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.flexbox-2 p1 {
+    display: flex;
+    justify-content: center;
+    font-weight: 500;
+}
+.flexbox-2 p2 {
+    display: flex;
+    justify-content: center;
+    font-weight: 500;
+}
+.flexbox-3 {
+    margin: 10px;
+    border-radius: 10px;
+    cursor: pointer;
+    padding: 50px;
+    transition: 0.5s;
+}
+.flexbox-3:hover {
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    transform: scale(1.05);
+}
+.flexbox-3 img {
+    margin-left: 90px;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.flexbox-3 h4 {
+    margin-bottom: 10px;
+    font-weight: 500;
+    font-size: 24px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.flexbox-3 p1 {
+    display: flex;
+    justify-content: center;
+    font-weight: 500;
+}
+.flexbox-3 p2 {
+    display: flex;
+    justify-content: center;
+    font-weight: 500;
+}
+
+/*เมนูอาหาร*/
+.head {
+    margin-top: 70px;
+    width: 100%;
+    height: auto;
+}
+.head h1 {
+    font-size: 32px;
+    font-weight: 600;
+    color: white;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 50px;
+}
+
+.container{
+    display: flex;
+    width: auto;
+    margin-top: 40px;
+    margin-left: 125px;
+    margin-bottom: 30px;
+}
+#root{
+    width: 90%;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 20px;
+}
+
+.box{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    background-color: white;
+    border: 1px solid rgb(255, 255, 255);
+    border-radius: 15px;
+    padding: 15px;
+}
+.img-box{
+    width: 100%;
+    height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.images{
+    width: 230px;
+    max-width: 90%;
+    max-height: 90%;
+    object-fit: cover;
+    object-position: center;
+}
+.bottom{
+    width: 100%;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    height: 110px;
+}
+h2{
+    font-size: 20px;
+    color: black;
+}
+button{
+    width: 40%;
+    position: relative;
+    border: none;
+    border-radius: 30px;
+    background-color: black;
+    padding: 10px 20px;
+    cursor: pointer;
+    color: white;
+}
+button:hover{
+    background-color: #575757;
+}
+.cart-item{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+    background-color: white;
+    border-bottom: 1px solid #aaa;
+    border-radius: 3px;
+    margin: 10px 10px;
+}
+.row-img{
+    width: 50px;
+    height: 50px;
+    border-radius: 50px;
+    border: 1px solid goldenrod;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.rowimg{
+    max-width: 43px;
+    max-height: 43px;
+    border-radius: 50%;
+}
+.fa-trash:hover{
+    cursor: pointer;
+    color: #333;
+}
+</style>
+
+<!-- ! JS -->
+
+<script src="addtocart.js"></script>
+<script type="text/javascript"></script>
+
+<script>
+
+// ตรวจสอบสถานะการล็อกอินเมื่อโหลดหน้า
+document.addEventListener('DOMContentLoaded', function() {
+    updateLoginButton();
+});
+
+// ฟังก์ชันอัพเดทปุ่มล็อกอิน/ล็อกเอาท์
+function updateLoginButton() {
+    const loginButton = document.getElementById('loginButton');
+    const isLoggedIn = localStorage.getItem('isLoggedIn');
+    const username = localStorage.getItem('username');
+
+    if (isLoggedIn === 'true') {
+        // เปลี่ยนปุ่มเป็นล็อกเอาท์
+        loginButton.textContent = 'ออกจากระบบ';
+        loginButton.href = '#';
+        loginButton.onclick = function() {
+            logout();
+            return false;
+        };
+    } else {
+        // เปลี่ยนกลับเป็นปุ่มล็อกอิน
+        loginButton.textContent = 'เข้าสู่ระบบ';
+        loginButton.href = 'login.html';
+        loginButton.onclick = null;
+    }
+}
+
+// ฟังก์ชันล็อกเอาท์
+function logout() {
+    localStorage.removeItem('isLoggedIn');
+    localStorage.removeItem('username');
+    updateLoginButton();
+    // รีเซ็ตตะกร้าสินค้า (ถ้าต้องการ)
+    cart = [];
+    localStorage.removeItem('cart');
+    displaycart();
+    window.location.reload();
+}
+</script>
+<script>
+cart = [];
+
+// ฟังก์ชันนี้จะทำการดึงข้อมูลจาก localStorage เมื่อโหลดหน้าเว็บ
+function loadCart() {
+  if (localStorage.getItem('cart')) {
+    cart = JSON.parse(localStorage.getItem('cart')); // ดึงข้อมูลจาก localStorage
+    displaycart(); // แสดงข้อมูลในตะกร้า
+  }
+}
+
+// เมื่อเพิ่มสินค้าไปยังตะกร้า
+function addtocart(a) {
+  cart.push({ ...categories[a] });
+  localStorage.setItem('cart', JSON.stringify(cart)); // เก็บข้อมูลใน localStorage
+  displaycart(); // อัพเดตการแสดงผลของตะกร้า
+}
+
+// เมื่อลบสินค้าออกจากตะกร้า
+function delElement(a) {
+  cart.splice(a, 1); // ลบสินค้าจากตะกร้า
+  localStorage.setItem('cart', JSON.stringify(cart)); // อัพเดตข้อมูลใน localStorage
+  displaycart(); // อัพเดตการแสดงผลของตะกร้า
+}
+
+</script>
+</body>
+</html>

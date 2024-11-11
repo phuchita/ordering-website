@@ -1,0 +1,206 @@
+<!-- ! HTML -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Fried Club</title>
+    <link rel="icon" href="images/logo-small.png" type="image/icon type" />
+  </head>
+  <body data-requires-auth>
+    <div class="navbar">
+      <div class="logo">
+        <a href="index.html">
+          <img src="images/logo.png" width="200px" />
+        </a>
+      </div>
+      <ul class="nav-links">
+        <li><a href="menu.html">รายการอาหาร</a></li>
+        <li><a href="coupon.html">คูปองส่วนลด</a></li>
+        <li><a href="ordered.html">รายการย้อนหลัง</a></li>
+      </ul>
+      <div class="icons">
+        <div class="cart">
+          <a href="checkout.html">
+            <img src="images/cart-icon.png" width="200px"
+          /></a>
+          <p id="count"></p>
+        </div>
+        <a href="login.html" id="loginButton" class="login-button"
+          >เข้าสู่ระบบ</a
+        >
+      </div>
+    </div>
+
+    <div class="ordered">
+      <h1>ข้อมูลการสั่งซื้อ</h1>
+    </div>
+    <div class="order-details">
+      <p><strong>หมายเลขคำสั่งซื้อ:</strong> <span id="orderNumber"></span></p>
+      <p><strong>ที่อยู่จัดส่ง:</strong> <span id="address"></span></p>
+      <p><strong>เวลาที่สั่งซื้อ:</strong> <span id="orderTime"></span></p>
+    </div>
+
+<!-- ! CSS -->
+
+    <style>
+      @font-face {
+        font-family: "IBM Plex Sans Thai Looped", sans-serif;
+        src: url("fonts/IBMPlexSansThaiLooped-Light.ttf");
+        font-weight: 300;
+        font-style: normal;
+        unicode-range: U+0E00- U+0E7F; /* ช่วงตัวอักษรภาษาไทย */
+      }
+      @font-face {
+        font-family: "IBM Plex Sans Thai Looped", sans-serif;
+        src: url("fonts/IBMPlexSansThaiLooped-Medium.ttf");
+        font-weight: 500;
+        font-style: normal;
+        unicode-range: U+0E00- U+0E7F; /* ช่วงตัวอักษรภาษาไทย */
+      }
+      @font-face {
+        font-family: "IBM Plex Sans Thai Looped", sans-serif;
+        src: url("fonts/IBMPlexSansThaiLooped-SemiBold.ttf");
+        font-weight: 600;
+        font-style: normal;
+        unicode-range: U+0E00- U+0E7F; /* ช่วงตัวอักษรภาษาไทย */
+      }
+      * {
+        font-family: "IBM Plex Sans Thai Looped", sans-serif;
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        background-color: #e83d46;
+      }
+      .navbar {
+        margin-top: 30px;
+        margin-left: 50px;
+        margin-right: 50px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        background-color: #e83d46;
+        padding: 15px 30px;
+      }
+      .nav-links {
+        list-style: none;
+        display: flex;
+        gap: 40px;
+      }
+      .nav-links li a {
+        color: white;
+        font-size: 20px;
+        text-decoration: none;
+      }
+      .icons {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+      }
+      .icons img {
+        width: 40px;
+        height: 40px;
+      }
+      .login-button {
+        color: white;
+        background-color: black;
+        padding: 10px 20px;
+        border-radius: 30px;
+        text-decoration: none;
+        font-size: 20px;
+      }
+      .search {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        padding: 10px;
+      }
+      .search form input {
+        text-align: center;
+        padding: 10px;
+        width: 250px;
+        border-radius: 30px;
+        border: none;
+      }
+      .search form input[type="submit"] {
+        margin-left: 10px;
+        padding: 10px;
+        width: 80px;
+        cursor: pointer;
+        color: #fff;
+        background: #000000;
+        border-radius: 30px;
+        border: none;
+      }
+      .ordered {
+        color: white;
+        margin-top: 20px;
+        margin-left: 80px;
+      }
+      .order-details {
+        padding: 40px 40px;
+        background-color: white;
+        border: solid 2px;
+        border-radius: 15px;
+        margin-top: 20px;
+        margin-left: 80px;
+        max-width: 1300px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+    </style>
+
+<!-- ! JS -->
+
+    <script src="addtocart.js"></script>
+    <script src="login.js"></script>
+
+    <script>
+      cart = [];
+
+      // ฟังก์ชันนี้จะทำการดึงข้อมูลจาก localStorage เมื่อโหลดหน้าเว็บ
+      function loadCart() {
+        if (localStorage.getItem("cart")) {
+          cart = JSON.parse(localStorage.getItem("cart")); // ดึงข้อมูลจาก localStorage
+          displaycart(); // แสดงข้อมูลในตะกร้า
+        }
+      }
+
+      // เมื่อเพิ่มสินค้าไปยังตะกร้า
+      function addtocart(a) {
+        cart.push({ ...categories[a] });
+        localStorage.setItem("cart", JSON.stringify(cart)); // เก็บข้อมูลใน localStorage
+        displaycart(); // อัพเดตการแสดงผลของตะกร้า
+      }
+
+      // เมื่อลบสินค้าออกจากตะกร้า
+      function delElement(a) {
+        cart.splice(a, 1); // ลบสินค้าจากตะกร้า
+        localStorage.setItem("cart", JSON.stringify(cart)); // อัพเดตข้อมูลใน localStorage
+        displaycart(); // อัพเดตการแสดงผลของตะกร้า
+      }
+
+      window.onload = function () {
+        let orderDetails = JSON.parse(localStorage.getItem("orderDetails"));
+        if (orderDetails) {
+          document.getElementById("orderNumber").innerText =
+            orderDetails.orderNumber;
+          document.getElementById("address").innerText = orderDetails.address;
+          document.getElementById("orderTime").innerText =
+            orderDetails.orderTime;
+
+          let orderItemsList = document.getElementById("orderItems");
+          orderDetails.items.forEach((item) => {
+            let listItem = document.createElement("li");
+            listItem.innerHTML = `${item.title} - ฿${item.price}`;
+            orderItemsList.appendChild(listItem);
+          });
+        }
+      };
+    </script>
+  </body>
+</html>
